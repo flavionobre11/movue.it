@@ -1,1 +1,1 @@
-export const MINUTES = 25;
+export const MINUTES = 5;

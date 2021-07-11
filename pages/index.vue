@@ -15,19 +15,20 @@
       <CompletedChallenges />
       <Countdown @completed="getNewChallenge" />
       <button v-if="hasCountdownCompleted" disabled class="button completed">
-        Cycle completed
+        Ciclo completo!
       </button>
       <button
         v-else-if="isCountdownActive"
         class="button abandon"
         @click="setCountdownState(false)"
       >
-        Abandon cycle
+        Abandonar ciclo
       </button>
       <button v-else class="button start" @click="setCountdownState(true)">
-        Start a cycle
+        Iniciar um ciclo
       </button>
     </div>
+    <Card id="challenge" class="w-full lg:w-1/2" />
   </section>
 </template>
 
@@ -41,10 +42,12 @@ import { Mutations as CountdownMT } from "~/store/Countdown/types";
 import CompletedChallenges from "~/components/atoms/CompletedChallenges.vue";
 import Profile from "~/components/molecules/Profile.vue";
 import Countdown from "~/components/molecules/Countdown.vue";
+import Card from "~/components/organisms/Card.vue";
 
 import playAudio from "~/shared/utils/play-audio.utils";
 import sendNotification from "~/shared/utils/send-notification.util";
-
+import getRandomNumber from "~/shared/utils/random-number.util";
+import scrollToElement from "~/shared/utils/scroll-to-element.util";
 export default Vue.extend({
   head() {
     return {
@@ -56,6 +59,7 @@ export default Vue.extend({
     CompletedChallenges,
     Countdown,
     Profile,
+    Card,
   },
 
   computed: {
@@ -77,7 +81,10 @@ export default Vue.extend({
       this.setCountdownIsActive(flag);
     },
     getNewChallenge: function () {
+      const index = getRandomNumber(0, this.challengesLength);
       this.setCountdownHasCompleted(true);
+      this.setCurrentChallengeIndex(index);
+
       if (Notification?.permission === "granted") {
         playAudio("/notification.mp3");
         sendNotification("New Challenge!", {
@@ -85,6 +92,10 @@ export default Vue.extend({
           icon: "/favicon.png",
         });
       }
+
+      this.$nextTick(() => {
+        scrollToElement("#challenge");
+      });
     },
   },
 
