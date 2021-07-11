@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  movue-it:
+    build:
+      context: ../../movue.it/
+    container_name: movue-it
+    tty: true
+    entrypoint: ./.docker/entrypoint.sh
+    ports:
+      - 8080:8080
+    volumes: 
+      - ../../movue.it:/usr/movue.it/app
+    networks:
+      - app
+
+networks: 
+  app:
+    driver: bridge
