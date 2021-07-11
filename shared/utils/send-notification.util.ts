@@ -1,0 +1,1 @@
+export default (title: string, options: object) => new Notification(title, options);

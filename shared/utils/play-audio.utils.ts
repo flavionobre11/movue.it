@@ -1,0 +1,1 @@
+export default (path: string) => new Audio(path).play();
