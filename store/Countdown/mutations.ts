@@ -1,7 +1,7 @@
 import { MINUTES } from "~/constants/constants";
 import { Mutations, MutationsInterface } from "./types";
 
-export const mutations: MutationsInterface = {
+export default {
     [Mutations.SET_TIME](state, newTime) {
         state.time = newTime;
     },
@@ -14,4 +14,4 @@ export const mutations: MutationsInterface = {
     [Mutations.SET_HAS_COMPLETED](state, hasCompleted) {
         state.hasCompleted = hasCompleted;
     },
-};
+} as MutationsInterface;

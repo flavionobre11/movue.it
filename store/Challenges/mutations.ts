@@ -1,4 +1,4 @@
-import { Mutations, MutationsInterface } from './types';
+import { Mutations, MutationsInterface } from "./types";
 
 export default {
     [Mutations.SET_CURRENT_CHALLENGE_INDEX](state, index) {
