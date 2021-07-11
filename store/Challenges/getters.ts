@@ -1,4 +1,4 @@
-import { Getters } from './types';
+import { Getters } from "./types";
 
 export default {
     challengesLength: state => state.allChallenges.length,
