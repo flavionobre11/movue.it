@@ -51,7 +51,7 @@ export default {
   },
 
   tailwindcss: {
-    viewer: true
+    viewer: false
   },
 
   server: {
