@@ -2,7 +2,7 @@ import { MINUTES } from '~/constants/constants';
 import { State } from './types';
 
 export const state = (): State => ({
-    time: MINUTES * 60,
+    time: 3,
     isActive: false,
     hasCompleted: false,
 });
